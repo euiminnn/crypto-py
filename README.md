@@ -15,7 +15,7 @@ python3 bitcoinAutotrade.py
 ```
 
 - 백그라운드에서 매매 실행하기(창 꺼도 계속 실행됨)
-* nohup ~ &: 백그라운드 실행
+  - nohup ~ &: 백그라운드 실행
 ```python
 nohup python3 bitcoinAutoTrade.py > output.log &
 ```
