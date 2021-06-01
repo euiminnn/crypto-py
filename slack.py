@@ -5,7 +5,7 @@ import requests
 
 access = "zDgJ2X0OZKk1pA7OEl4c88Mh5xCR1NTIHw0TU9TV"
 secret = "gtJtPUD4TC0KvyfxGO7T8xrbbMR2tcAQMygz0eSR"
-myToken = "xoxb-your-token"
+myToken = "xoxb-2122874603954-2146687030304-YQblwimwWlCwob02TUO0nLM6"
 
 def post_message(token, channel, text):
     """슬랙 메시지 전송"""
@@ -51,7 +51,7 @@ def get_current_price(ticker):
 upbit = pyupbit.Upbit(access, secret)
 print("autotrade start")
 # 시작 메세지 슬랙 전송
-post_message(myToken,"#crypto", "autotrade start")
+post_message(myToken,"#coin_alert", "autotrade start")
 
 while True:
     try:
@@ -60,22 +60,22 @@ while True:
         end_time = start_time + datetime.timedelta(days=1)
 
         if start_time < now < end_time - datetime.timedelta(seconds=10):
-            target_price = get_target_price("KRW-BTC", 0.5)
+            target_price = get_target_price("KRW-BTC", 0.7)
             ma15 = get_ma15("KRW-BTC")
             current_price = get_current_price("KRW-BTC")
             if target_price < current_price and ma15 < current_price:
                 krw = get_balance("KRW")
                 if krw > 5000:
                     buy_result = upbit.buy_market_order("KRW-BTC", krw*0.9995)
-                    post_message(myToken,"#crypto", "BTC buy : " +str(buy_result))
+                    post_message(myToken,"#coin_alert", "BTC buy : " +str(buy_result))
         else:
             btc = get_balance("BTC")
             if btc > 0.00008:
                 sell_result = upbit.sell_market_order("KRW-BTC", btc*0.9995)
-                post_message(myToken,"#crypto", "BTC buy : " +str(sell_result))
+                post_message(myToken,"#coin_alert", "BTC buy : " +str(sell_result))
         time.sleep(1)
     except Exception as e:
         print(e)
-        post_message(myToken,"#crypto", e)
+        post_message(myToken,"#coin_alert", e)
         time.sleep(1)
 
