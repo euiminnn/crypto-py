@@ -7,6 +7,6 @@ def post_message(token, channel, text):
     )
     print(response)
  
-myToken = "xoxb-2122874603954-2146687030304-YQblwimwWlCwob02TUO0nLM6"
+myToken = "xoxb-disabled"
  
 post_message(myToken,"#coin_alert","먕이 부자되기 프로젝트 시작!")
